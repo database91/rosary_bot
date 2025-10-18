@@ -6,7 +6,7 @@ from aiogram import Bot, Dispatcher, types
 from aiogram.client.default import DefaultBotProperties
 from aiogram.enums.parse_mode import ParseMode
 from aiogram.filters import CommandStart, Command
-
+from kb.kb import listcom
 
 
 
@@ -23,15 +23,15 @@ async def start_func(message: types.Message):
     await message.answer(text=text)      
 
 
-dp.message(Command("/скорбная тайна"))
-async def photo(message: types.Message):
-    
+@dp.message(Command("sorrowful_mystery", prefix="/"))
+async def sorrows(message: types.Message):
+    await message.answer("здесь будут скорбные тайный розария")
     
 
 async def main():
     #пропускает апдейты когда выключен.
     await bot.delete_webhook(drop_pending_updates=True)
-    
+    await bot.set_my_commands(commands=listcom)
     #запускает бота в поллинг режиме
     await dp.start_polling(bot)
 
