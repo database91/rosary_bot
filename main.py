@@ -5,7 +5,7 @@ from aiogram.filters.magic_data import MagicFilter
 from aiogram import Bot, Dispatcher, types
 from aiogram.client.default import DefaultBotProperties
 from aiogram.enums.parse_mode import ParseMode
-from aiogram.filters import CommandStart
+from aiogram.filters import CommandStart, Command
 
 
 
@@ -19,16 +19,14 @@ dp = Dispatcher()
 
 @dp.message(CommandStart())
 async def start_func(message: types.Message):
-    text = "<b>Привествую вас!</b> В нашем боте!  --&#9899--"
+    text = "<b>Привествую вас!</b> В нашем боте! --&#9899--"
     await message.answer(text=text)      
 
 
-@dp.message(F.photo)
+dp.message(Command("/скорбная тайна"))
 async def photo(message: types.Message):
-    var_text_two = 'ЭТО ТЕКСТ ВТОРОЙ ПЕРЕМЕННОЙ'
-    var_text = f"это просто прикольная переменная с f строкой {var_text_two}"
-    await message.answer(text=var_text)
-  
+    
+    
 
 async def main():
     #пропускает апдейты когда выключен.
