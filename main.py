@@ -15,15 +15,17 @@ token = error_checker()
 #создаем экземпляр бота, передаем ему токен из хранилища и врубаем режим парсинга HTML по умолчанию
 bot = Bot(token=token, default=DefaultBotProperties(parse_mode=ParseMode.HTML))
 
+#создаем объект диспетчера
 dp = Dispatcher()
 
-
+#создаем стартовый хендлер с фильтром CommandStart
 @dp.message(CommandStart())
 async def start_func(message: types.Message):
     text = "<b>Привествую вас!</b> В нашем боте! --&#9899--"
     await message.answer(text=text)      
 
 
+#создаем хендлер работающий на команду /sorrowful_mystery
 @dp.message(Command("sorrowful_mystery", prefix="/"))
 async def sorrows(message: types.Message):
     await message.answer("здесь будут скорбные тайный розария")
@@ -32,6 +34,7 @@ async def sorrows(message: types.Message):
 async def main():
     #пропускает апдейты когда выключен.
     await bot.delete_webhook(drop_pending_updates=True)
+    #создают меню комманд бота
     await bot.set_my_commands(commands=listcom)
     #запускает бота в поллинг режиме
     await dp.start_polling(bot)
