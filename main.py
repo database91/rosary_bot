@@ -12,7 +12,8 @@ from errors.erros import error_checker
 
 #создаем экземпляр бота 
 token = error_checker()
-bot = Bot(token=token)
+#создаем экземпляер бота, передаем ему токен из хранилища и врубаем режим парсинга HTML по умолчанию
+bot = Bot(token=token, default=DefaultBotProperties(parse_mode=ParseMode.HTML))
 
 dp = Dispatcher()
 
