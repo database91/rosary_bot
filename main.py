@@ -1,18 +1,18 @@
 import asyncio
 
+
 from aiogram import F
 from aiogram.filters.magic_data import MagicFilter
 from aiogram import Bot, Dispatcher, types
 from aiogram.client.default import DefaultBotProperties
 from aiogram.enums.parse_mode import ParseMode
 from aiogram.filters import CommandStart, Command
-from kb.kb import listcom
+from kb.list_commands import listcom
+from errors.erros import error_checker
 
-
-
-bot = Bot(token="8461458090:AAFeGNfdtGMRH0z18Efsg1EaO9wL_oGHZIA",
-            default=DefaultBotProperties(parse_mode=ParseMode.HTML))
-
+#создаем экземпляр бота 
+token = error_checker()
+bot = Bot(token=token)
 
 dp = Dispatcher()
 
